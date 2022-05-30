@@ -83,7 +83,6 @@ describe("About Objects", function () {
     expect("secretary" in megalomaniac).toBe(true);
 
     delete megalomaniac.henchman;
-    console.log(megalomaniac);
     expect("henchman" in megalomaniac).toBe(false);
   });
 
