@@ -81,13 +81,22 @@ describe("About Applying What We Have Learnt", function () {
       }
     }
 
-    expect(sum).toBe(FILL_ME_IN);
+    expect(sum).toBe(233168);
   });
 
   it("should add all the natural numbers below 1000 that are multiples of 3 or 5 (functional)", function () {
-    var sum = FILL_ME_IN; /* try chaining range() and reduce() */
+    // 자연수 3, 5 배수인 1000미만 모든 자연수를 더한다.
+    var sum = _.range(0, 1000); /* try chaining range() and reduce() */
 
-    expect(233168).toBe(FILL_ME_IN);
+    var result = sum.reduce((acc, cur) => {
+      // 배열.reduce((누적값, 현재값, 인덱스, 요소) => {return 결과값}, 초기값)
+      if (cur % 3 === 0 || cur % 5 === 0) {
+        acc += cur;
+      }
+      return acc;
+    });
+
+    expect(233168).toBe(result);
   });
 
   /*********************************************************************************/
@@ -101,15 +110,25 @@ describe("About Applying What We Have Learnt", function () {
       }
     }
 
-    expect(ingredientCount["mushrooms"]).toBe(FILL_ME_IN);
+    expect(ingredientCount["mushrooms"]).toBe(2);
   });
 
   it("should count the ingredient occurrence (functional)", function () {
     var ingredientCount = { "{ingredient name}": 0 };
 
     /* chain() together map(), flatten() and reduce() */
+    _(products)
+      .chain()
+      .map(function (p) {
+        return p.ingredients;
+      })
+      .flatten()
+      .reduce(function (s, i) {
+        return (ingredientCount[i] = (ingredientCount[i] || 0) + 1);
+      })
+      .value();
 
-    expect(ingredientCount["mushrooms"]).toBe(FILL_ME_IN);
+    expect(ingredientCount["mushrooms"]).toBe(2);
   });
 
   /*********************************************************************************/
